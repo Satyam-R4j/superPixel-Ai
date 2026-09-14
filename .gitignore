@@ -1,0 +1,45 @@
+# Datasets & Data
+dataset
+dataset/
+/dataset
+/dataset/
+data/
+
+*.zip
+*.tar
+*.gz
+*.rar
+*.7z
+*.h5
+*.npy
+*.npz
+
+# Model Checkpoints & Output artifacts
+checkpoints/
+outputs/
+*.pth
+*.pt
+*.ckpt
+*.onnx
+*.safetensors
+*.bin
+
+# Python & Environment
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+ENV/
+*.egg-info/
+.dist/
+build/
+dist/
+
+# IDE & OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.log
