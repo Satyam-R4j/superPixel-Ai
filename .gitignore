@@ -4,6 +4,8 @@ dataset/
 /dataset
 /dataset/
 data/
+test_images/
+test_image/
 
 *.zip
 *.tar
