@@ -5,15 +5,15 @@ from PIL import Image
 from torchvision import transforms
 
 
-from model import SimpleSuperResolutionCNN
+from model import ImprovedSuperResolutionCNN
 
 
 # configuration
 
-INPUT_IMAGE = Path("test_images/Pic.jpg")
+INPUT_IMAGE = Path("test_images/Pic.jpeg")
 
 MODEL_PATH = Path(
-    "checkpoints/model_epoch_20.pth"
+    "checkpoints_v2/model_epoch_75.pth"
 )
 
 OUTPUT_DIR = Path("outputs")
@@ -34,7 +34,7 @@ if device.type == "cuda":
     )
 
 # Load model
-model = SimpleSuperResolutionCNN().to(device)
+model = ImprovedSuperResolutionCNN().to(device)
 
 checkpoint = torch.load(
     MODEL_PATH,

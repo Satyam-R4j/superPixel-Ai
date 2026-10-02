@@ -7,7 +7,7 @@ from PIL import Image
 from torchvision import transforms
 from tqdm import tqdm
 
-from model import SimpleSuperResolutionCNN
+from model import ImprovedSuperResolutionCNN
 
 
 
@@ -19,11 +19,11 @@ TRAIN_HR_DIR = Path("dataset/sr_pairs/train/hr")
 VAL_LR_DIR = Path("dataset/sr_pairs/val/lr")
 VAL_HR_DIR = Path("dataset/sr_pairs/val/hr")
 
-CHECKPOINT_DIR = Path("checkpoints")
+CHECKPOINT_DIR = Path("checkpoints_v2")
 CHECKPOINT_DIR.mkdir(exist_ok=True)
 
-BATCH_SIZE = 16
-NUM_EPOCHS = 20
+BATCH_SIZE = 8
+NUM_EPOCHS = 75
 LEARNING_RATE = 0.0002
 
 NUM_WORKERS = 0
@@ -100,7 +100,7 @@ val_loader = DataLoader(
 
 # Model
 
-model = SimpleSuperResolutionCNN().to(DEVICE)
+model = ImprovedSuperResolutionCNN().to(DEVICE)
 
 print("\n Using device: ", DEVICE)
 
