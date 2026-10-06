@@ -1,12 +1,9 @@
-from train import progress
-from train import NUM_WORKERS
 from pathlib import Path
 
 import torch
 import torch.nn as nn
 
 from torch.utils.data import DataLoader
-
 
 from tqdm import tqdm
 
@@ -32,7 +29,7 @@ NUM_WORKERS = 0
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-dataset = SuperResolutionDatasetV3(DATASET, crop_size=128, pathches_per_image=10)
+dataset = SuperResolutionDatasetV3(DATASET, crop_size=128, patches_per_image=10)
 
 loader = DataLoader(
     dataset,
@@ -86,7 +83,7 @@ for epoch in range(EPOCHS):
 
         optimizer.step()
 
-        total_loss += loss.items()
+        total_loss += loss.item()
 
         progress.set_postfix(loss=f"{loss.item():.5f}")
 
@@ -94,11 +91,11 @@ for epoch in range(EPOCHS):
 
     average_loss = total_loss / len(loader)
 
-    print(f"\n Epoch {epoch + 1}")
+    print(f"\nEpoch {epoch + 1}")
 
     print(f"Loss: {average_loss:.6f}")
 
-    print("Learning rate.", scheduler.get_last_lr()[0])
+    print("Learning rate:", scheduler.get_last_lr()[0])
 
     # Save checkpoints
     checkpoint_path = CHECKPOINT_DIR / f"model_epoch_{epoch + 1}.pth"

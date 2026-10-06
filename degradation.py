@@ -17,11 +17,11 @@ def degrade_image(hr_image):
         )
 
     # 2. Random resize
-    scale = random.uniform((0.45, 0.65))
+    scale = random.uniform(0.45, 0.65)
     width, height = hr_image.size
     
     lr_width = max(8, int(width * scale))
-    lr_height = max(8, int (height * scale))
+    lr_height = max(8, int(height * scale))
 
     lr_image = hr_image.resize(
         (lr_width, lr_height),
@@ -33,12 +33,12 @@ def degrade_image(hr_image):
 
         buffer = io.BytesIO()
 
-        quality = random.randint(30,90)
+        quality = random.randint(30, 90)
 
         lr_image.save(
             buffer,
-            formate = "JPEG",
-            quality= quality
+            format="JPEG",
+            quality=quality
         )
 
         buffer.seek(0)
@@ -73,10 +73,10 @@ def degrade_image(hr_image):
 
         lr_tensor = lr_tensor + noise
 
-        lr_tensor = torch.clamp((
+        lr_tensor = torch.clamp(
             lr_tensor,
             0.0,
             1.0
-        ))
+        )
 
     return lr_tensor

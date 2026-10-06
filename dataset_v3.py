@@ -1,4 +1,3 @@
-from benchmark import lr_tensor
 from pathlib import Path
 
 import random
@@ -12,7 +11,7 @@ from degradation import degrade_image
 
 
 class SuperResolutionDatasetV3(Dataset):
-    def __init__(self, image_dir, crop_size=128, pathches_per_image=10):
+    def __init__(self, image_dir, crop_size=128, patches_per_image=10):
 
         self.image_dir = Path(image_dir)
         self.images = sorted(
@@ -22,7 +21,7 @@ class SuperResolutionDatasetV3(Dataset):
         )
 
         self.crop_size = crop_size
-        self.patches_per_image = pathches_per_image
+        self.patches_per_image = patches_per_image
 
         self.to_tensor = transforms.ToTensor()
 
@@ -35,7 +34,7 @@ class SuperResolutionDatasetV3(Dataset):
 
         image_index = index // self.patches_per_image
 
-        image_path = self.images(image_index)
+        image_path = self.images[image_index]
 
         image = Image.open(image_path).convert("RGB")
 

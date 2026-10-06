@@ -3,9 +3,9 @@ import torch.nn as nn
 
 
 class ResidualBlock(nn.Module):
-    def __int__(self, channels=64):
+    def __init__(self, channels=64):
 
-        super.__init__()
+        super().__init__()
 
         self.conv1 = nn.Conv2d(channels, channels, 3, padding=1)
 
@@ -33,7 +33,7 @@ class SuperResolutionV3(nn.Module):
 
         self.body_conv = nn.Conv2d(64, 64, 3, padding=1)
 
-        self.upsmaple = nn.Sequential(
+        self.upsample = nn.Sequential(
             nn.Conv2d(64, 256, 3, padding=1), nn.PixelShuffle(2), nn.ReLU(inplace=True)
         )
 
@@ -44,10 +44,10 @@ class SuperResolutionV3(nn.Module):
         features = self.head(x)
 
         body = self.body(features)
-
         body = self.body_conv(body)
 
         features = features + body
+        features = self.upsample(features)
          
         output = self.tail(
             features
